@@ -2,4 +2,4 @@
 # This is a placeholder test file to trigger GitHub Actions workflow
 
 def test_adaptation_trigger():
-    print("✅ Dummy test passed: Adaptation workflow should trigger now.")
+    print("✅ Dummy test passed: Adaptation workflow should trigger now. With this gemini should work tooo.")
