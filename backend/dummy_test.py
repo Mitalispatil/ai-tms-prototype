@@ -1,0 +1,5 @@
+# dummy_test.py
+# This is a placeholder test file to trigger GitHub Actions workflow
+
+def test_adaptation_trigger():
+    print("✅ Dummy test passed: Adaptation workflow should trigger now.")
