@@ -35,4 +35,4 @@ jobs:
           GOOGLE_API_KEY: ${{ secrets.MODEL_API_KEY }}
         run: |
           source venv/bin/activate
-          python backend/adaptation_handler.py
+          python backend/adaptation/adaptation_handler.py
