@@ -4,8 +4,11 @@ on:
   push:
     paths:
       - '**.py'
-      - '**.pdf'
+      - '**.js'
+      - '**.jsx'
       - '**.json'
+      - '**.pdf'
+      - '**.docx'
 
 jobs:
   adapt-test-cases:
@@ -28,6 +31,8 @@ jobs:
 
       - name: Run Adaptation Handler
         env:
+          MODEL_API_URL: ${{ secrets.MODEL_API_URL }}
           GOOGLE_API_KEY: ${{ secrets.MODEL_API_KEY }}
         run: |
-          python backend/adaptation/adaptation_handler.py
+          source venv/bin/activate
+          python backend/adaptation_handler.py

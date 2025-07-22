@@ -1,0 +1,428 @@
+[
+  {
+    "id": "TC-ADD-POS-01",
+    "scenario": "Book Management: Add New Book",
+    "type": "Positive",
+    "priority": "P1",
+    "severity": "High",
+    "summary": "Add a new book with all valid data, including all optional fields.",
+    "pre_condition": "N/A",
+    "test_steps": [
+      "Navigate to 'Add Book' page",
+      "Enter a valid 13-digit ISBN",
+      "Enter a valid book title",
+      "Enter a valid author name",
+      "Select a genre from the dropdown",
+      "Enter a valid 4-digit publication year",
+      "Enter a valid number of copies (integer >= 1)",
+      "Click 'Save'"
+    ],
+    "test_data": {
+      "ISBN": "9780321765723",
+      "Title": "The Lord of the Rings",
+      "Author": "J.R.R. Tolkien",
+      "Genre": "Fantasy",
+      "Publication Year": "1954",
+      "Number of Copies": 5
+    },
+    "expected_result": "Success message 'Book 'The Lord of the Rings' added successfully' is displayed. Book appears in inventory with all data saved correctly."
+  },
+  {
+    "id": "TC-ADD-POS-02",
+    "scenario": "Book Management: Add New Book",
+    "type": "Positive",
+    "priority": "P2",
+    "severity": "Medium",
+    "summary": "Add a new book with minimum required fields only.",
+    "pre_condition": "N/A",
+    "test_steps": [
+      "Navigate to 'Add Book' page",
+      "Enter a valid 13-digit ISBN",
+      "Enter a valid book title",
+      "Enter a valid author name",
+      "Select a genre from the dropdown",
+      "Enter a valid 4-digit publication year",
+      "Enter a valid number of copies (integer >= 1)",
+      "Click 'Save'"
+    ],
+    "test_data": {
+      "ISBN": "9780123456789",
+      "Title": "A Test Book",
+      "Author": "Test Author",
+      "Genre": "Fiction",
+      "Publication Year": "2023",
+      "Number of Copies": 1
+    },
+    "expected_result": "Success message 'Book 'A Test Book' added successfully' is displayed. Book appears in inventory with all data saved correctly."
+  },
+  {
+    "id": "TC-ADD-NEG-01",
+    "scenario": "Book Management: Add New Book",
+    "type": "Negative",
+    "priority": "P1",
+    "severity": "High",
+    "summary": "Attempt to add a book with a duplicate ISBN.",
+    "pre_condition": "N/A",
+    "test_steps": [
+      "Navigate to 'Add Book' page",
+      "Enter an ISBN that already exists in the system",
+      "Fill other fields with valid data",
+      "Click 'Save'"
+    ],
+    "test_data": {
+      "ISBN": "9780321765723"
+    },
+    "expected_result": "Error message 'ISBN already exists' is displayed. The form is not submitted."
+  },
+  {
+    "id": "TC-ADD-NEG-02",
+    "scenario": "Book Management: Add New Book",
+    "type": "Negative",
+    "priority": "P1",
+    "severity": "High",
+    "summary": "Attempt to add a book with an invalid ISBN (not 13 digits).",
+    "pre_condition": "N/A",
+    "test_steps": [
+      "Navigate to 'Add Book' page",
+      "Enter an ISBN that is not 13 digits long",
+      "Fill other fields with valid data",
+      "Click 'Save'"
+    ],
+    "test_data": {
+      "ISBN": "123456789012"
+    },
+    "expected_result": "Error message indicating ISBN must be 13 digits is displayed. The form is not submitted."
+  },
+  {
+    "id": "TC-ADD-NEG-03",
+    "scenario": "Book Management: Add New Book",
+    "type": "Negative",
+    "priority": "P1",
+    "severity": "High",
+    "summary": "Attempt to add a book with an invalid ISBN (contains non-numeric characters).",
+    "pre_condition": "N/A",
+    "test_steps": [
+      "Navigate to 'Add Book' page",
+      "Enter an ISBN containing non-numeric characters",
+      "Fill other fields with valid data",
+      "Click 'Save'"
+    ],
+    "test_data": {
+      "ISBN": "978032176572A"
+    },
+    "expected_result": "Error message indicating ISBN must contain only numbers is displayed. The form is not submitted."
+  },
+  {
+    "id": "TC-ADD-NEG-04",
+    "scenario": "Book Management: Add New Book",
+    "type": "Negative",
+    "priority": "P1",
+    "severity": "Medium",
+    "summary": "Attempt to add a book with an empty Title field.",
+    "pre_condition": "N/A",
+    "test_steps": [
+      "Navigate to 'Add Book' page",
+      "Leave the Title field empty",
+      "Fill other required fields with valid data",
+      "Click 'Save'"
+    ],
+    "test_data": {
+      "Title": ""
+    },
+    "expected_result": "Error message indicating Title is required is displayed next to the Title field. The form is not submitted."
+  },
+  {
+    "id": "TC-ADD-NEG-05",
+    "scenario": "Book Management: Add New Book",
+    "type": "Negative",
+    "priority": "P2",
+    "severity": "Medium",
+    "summary": "Attempt to add a book with an invalid Publication Year (not 4 digits).",
+    "pre_condition": "N/A",
+    "test_steps": [
+      "Navigate to 'Add Book' page",
+      "Enter an invalid Publication Year",
+      "Fill other required fields with valid data",
+      "Click 'Save'"
+    ],
+    "test_data": {
+      "Publication Year": "202"
+    },
+    "expected_result": "Error message indicating Publication Year must be 4 digits is displayed. The form is not submitted."
+  },
+  {
+    "id": "TC-ADD-NEG-06",
+    "scenario": "Book Management: Add New Book",
+    "type": "Negative",
+    "priority": "P2",
+    "severity": "Medium",
+    "summary": "Attempt to add a book with zero or negative Number of Copies.",
+    "pre_condition": "N/A",
+    "test_steps": [
+      "Navigate to 'Add Book' page",
+      "Enter zero or a negative number for Number of Copies",
+      "Fill other required fields with valid data",
+      "Click 'Save'"
+    ],
+    "test_data": {
+      "Number of Copies": -1
+    },
+    "expected_result": "Error message indicating Number of Copies must be greater than or equal to 1 is displayed. The form is not submitted."
+  },
+  {
+    "id": "TC-SEARCH-POS-01",
+    "scenario": "Book Management: Search Books",
+    "type": "Positive",
+    "priority": "P1",
+    "severity": "High",
+    "summary": "Search for a book by title (exact match).",
+    "pre_condition": "N/A",
+    "test_steps": [
+      "Navigate to 'Search Books' page",
+      "Enter a book title in the search field",
+      "Click 'Search'"
+    ],
+    "test_data": {
+      "Title": "The Lord of the Rings"
+    },
+    "expected_result": "Search results display the book with matching title, author, ISBN, and number of available copies."
+  },
+  {
+    "id": "TC-DETAILS-POS-01",
+    "scenario": "Book Management: View Book Details",
+    "type": "Positive",
+    "priority": "P1",
+    "severity": "High",
+    "summary": "View details of a book from search results.",
+    "pre_condition": "N/A",
+    "test_steps": [
+      "Navigate to 'Search Books' page",
+      "Search for a book",
+      "Click on a book from search results to view details"
+    ],
+    "test_data": {
+      "Title": "The Lord of the Rings"
+    },
+    "expected_result": "A page displays complete details of the selected book (ISBN, Title, Author, Genre, Publication Year, Number of Copies)."
+  },
+  {
+    "id": "TC-RETURN-NEG-02",
+    "scenario": "Member Checkout Management: Return Book",
+    "type": "Negative",
+    "priority": "P2",
+    "severity": "Medium",
+    "summary": "Attempt to return a book that has not been checked out.",
+    "pre_condition": "N/A",
+    "test_steps": [
+      "Navigate to 'Return Book' page",
+      "Enter an ISBN for a book that has not been checked out",
+      "Click 'Return'"
+    ],
+    "test_data": {
+      "ISBN": "9780123456789"
+    },
+    "expected_result": "Appropriate error message is displayed or system gracefully handles the situation without error. Return fails or does nothing."
+  },
+  {
+    "id": "TC-SEARCH-POS-02",
+    "scenario": "Book Management: Search Books",
+    "type": "Positive",
+    "priority": "P2",
+    "severity": "Medium",
+    "summary": "Search for a book by author (partial match, case-insensitive).",
+    "pre_condition": "N/A",
+    "test_steps": [
+      "Navigate to 'Search Books' page",
+      "Enter a partial author name in the search field",
+      "Click 'Search'"
+    ],
+    "test_data": {
+      "Author": "tolki"
+    },
+    "expected_result": "Search results display all books by authors whose names contain 'tolki', regardless of case."
+  },
+  {
+    "id": "TC-SEARCH-POS-03",
+    "scenario": "Book Management: Search Books",
+    "type": "Positive",
+    "priority": "P2",
+    "severity": "Medium",
+    "summary": "Search for a book by ISBN.",
+    "pre_condition": "N/A",
+    "test_steps": [
+      "Navigate to 'Search Books' page",
+      "Enter a valid ISBN in the search field",
+      "Click 'Search'"
+    ],
+    "test_data": {
+      "ISBN": "9780321765723"
+    },
+    "expected_result": "Search results display the book with the matching ISBN."
+  },
+  {
+    "id": "TC-SEARCH-NEG-01",
+    "scenario": "Book Management: Search Books",
+    "type": "Negative",
+    "priority": "P2",
+    "severity": "Low",
+    "summary": "Search with no input.",
+    "pre_condition": "N/A",
+    "test_steps": [
+      "Navigate to 'Search Books' page",
+      "Leave the search field empty",
+      "Click 'Search'"
+    ],
+    "test_data": {},
+    "expected_result": "No books found message is displayed or all books are displayed (depending on system design)."
+  },
+  {
+    "id": "TC-SEARCH-NEG-02",
+    "scenario": "Book Management: Search Books",
+    "type": "Negative",
+    "priority": "P3",
+    "severity": "Low",
+    "summary": "Search with invalid ISBN (non-numeric characters).",
+    "pre_condition": "N/A",
+    "test_steps": [
+      "Navigate to 'Search Books' page",
+      "Enter an invalid ISBN in the search field",
+      "Click 'Search'"
+    ],
+    "test_data": {
+      "ISBN": "978032176572A"
+    },
+    "expected_result": "No books found message is displayed or an appropriate error message is displayed."
+  },
+  {
+    "id": "TC-DETAILS-NEG-01",
+    "scenario": "Book Management: View Book Details",
+    "type": "Negative",
+    "priority": "P3",
+    "severity": "Low",
+    "summary": "Attempt to view details when no book is selected from search results.",
+    "pre_condition": "N/A",
+    "test_steps": [
+      "Navigate to 'Search Books' page",
+      "Search for a book",
+      "Attempt to view details without selecting a book"
+    ],
+    "test_data": {},
+    "expected_result": "No action or appropriate error message is displayed."
+  },
+  {
+    "id": "TC-CHECKOUT-POS-01",
+    "scenario": "Member Checkout Management: Checkout Book",
+    "type": "Positive",
+    "priority": "P1",
+    "severity": "High",
+    "summary": "Checkout a book with available copies.",
+    "pre_condition": "N/A",
+    "test_steps": [
+      "Navigate to 'Checkout Book' page",
+      "Enter a valid Member ID",
+      "Enter a valid Book ISBN with available copies",
+      "Click 'Checkout'"
+    ],
+    "test_data": {
+      "Member ID": "12345",
+      "ISBN": "9780321765723"
+    },
+    "expected_result": "Confirmation message 'Book [ISBN] checked out successfully to Member [Member ID]' is displayed. Number of Available Copies for the book is decreased by 1."
+  },
+  {
+    "id": "TC-CHECKOUT-NEG-01",
+    "scenario": "Member Checkout Management: Checkout Book",
+    "type": "Negative",
+    "priority": "P1",
+    "severity": "High",
+    "summary": "Attempt to checkout a book with no available copies.",
+    "pre_condition": "N/A",
+    "test_steps": [
+      "Navigate to 'Checkout Book' page",
+      "Enter a valid Member ID",
+      "Enter a valid Book ISBN with zero available copies",
+      "Click 'Checkout'"
+    ],
+    "test_data": {
+      "Member ID": "12345",
+      "ISBN": "9780321765723"
+    },
+    "expected_result": "Error message 'No available copies for ISBN [ISBN]' is displayed. Checkout fails."
+  },
+  {
+    "id": "TC-CHECKOUT-NEG-02",
+    "scenario": "Member Checkout Management: Checkout Book",
+    "type": "Negative",
+    "priority": "P1",
+    "severity": "High",
+    "summary": "Attempt to checkout a book with an invalid ISBN.",
+    "pre_condition": "N/A",
+    "test_steps": [
+      "Navigate to 'Checkout Book' page",
+      "Enter a valid Member ID",
+      "Enter an invalid Book ISBN",
+      "Click 'Checkout'"
+    ],
+    "test_data": {
+      "Member ID": "12345",
+      "ISBN": "InvalidISBN"
+    },
+    "expected_result": "Appropriate error message is displayed. Checkout fails."
+  },
+  {
+    "id": "TC-CHECKOUT-NEG-03",
+    "scenario": "Member Checkout Management: Checkout Book",
+    "type": "Negative",
+    "priority": "P1",
+    "severity": "High",
+    "summary": "Attempt to checkout a book with an invalid Member ID.",
+    "pre_condition": "N/A",
+    "test_steps": [
+      "Navigate to 'Checkout Book' page",
+      "Enter an invalid Member ID",
+      "Enter a valid Book ISBN",
+      "Click 'Checkout'"
+    ],
+    "test_data": {
+      "Member ID": "InvalidMemberID",
+      "ISBN": "9780321765723"
+    },
+    "expected_result": "Appropriate error message is displayed. Checkout fails."
+  },
+  {
+    "id": "TC-RETURN-POS-01",
+    "scenario": "Member Checkout Management: Return Book",
+    "type": "Positive",
+    "priority": "P1",
+    "severity": "High",
+    "summary": "Return a book.",
+    "pre_condition": "N/A",
+    "test_steps": [
+      "Navigate to 'Return Book' page",
+      "Enter a valid Book ISBN",
+      "Click 'Return'"
+    ],
+    "test_data": {
+      "ISBN": "9780321765723"
+    },
+    "expected_result": "Confirmation message 'Book [ISBN] returned successfully' is displayed. Number of Available Copies for the book is increased by 1."
+  },
+  {
+    "id": "TC-RETURN-NEG-01",
+    "scenario": "Member Checkout Management: Return Book",
+    "type": "Negative",
+    "priority": "P1",
+    "severity": "High",
+    "summary": "Attempt to return a book with an invalid ISBN.",
+    "pre_condition": "N/A",
+    "test_steps": [
+      "Navigate to 'Return Book' page",
+      "Enter an invalid Book ISBN",
+      "Click 'Return'"
+    ],
+    "test_data": {
+      "ISBN": "InvalidISBN"
+    },
+    "expected_result": "Appropriate error message is displayed. Return fails."
+  }
+]
