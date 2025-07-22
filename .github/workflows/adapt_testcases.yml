@@ -36,3 +36,9 @@ jobs:
         run: |
           source venv/bin/activate
           python backend/adaptation/adaptation_handler.py
+
+      - name: Upload Adapted Testcases
+        uses: actions/upload-artifact@v4
+        with:
+          name: adapted-testcases
+          path: backend/adaptation/adapted_testcases.json
