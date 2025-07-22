@@ -1,0 +1,33 @@
+name: Adapt Test Cases on Push
+
+on:
+  push:
+    paths:
+      - '**.py'
+      - '**.pdf'
+      - '**.json'
+
+jobs:
+  adapt-test-cases:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install Dependencies
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+          pip install -r backend/requirements.txt
+
+      - name: Run Adaptation Handler
+        env:
+          GOOGLE_API_KEY: ${{ secrets.MODEL_API_KEY }}
+        run: |
+          python backend/adaptation/adaptation_handler.py
