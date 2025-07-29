@@ -70,8 +70,8 @@ def adapt_test_cases(merged_diff: str, old_testcases: str) -> str:
 
 def main():
     # Step 1: BRD diff
-    old_brd = extract_text_from_pdf("backend/adaptation/old_brd.pdf")
-    new_brd = extract_text_from_pdf("backend/adaptation/new_brd.pdf")
+    old_brd = extract_text_from_pdf("backend/adaptation/old_BRD.pdf")
+    new_brd = extract_text_from_pdf("backend/adaptation/new_BRD.pdf")
     brd_diff = generate_diff(old_brd, new_brd)
 
     # Step 2: Code diff from Git
